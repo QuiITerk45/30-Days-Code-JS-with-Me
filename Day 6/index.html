@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box-text">
+        <h2>Press any key</h2>
+    </div>
+
+    <div class="container">
+        <div class="top-showResult">
+            0
+        </div>
+        <div class="body-result">
+            <div class="item-key">
+                <div class="key-heading">Key</div>
+                <div class="key-result" style="text-transform: uppercase;">
+                </div>
+            </div>
+            <div class="item-key">
+                <div class="key-heading">Location</div>
+                <div class="key-result" ></div>
+            </div>
+            <div class="item-key">
+                <div class="key-heading">Which</div>
+                <div class="key-result"></div>
+            </div>
+            <div class="item-key">
+                <div class="key-heading">Code</div>
+                <div class="key-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bodygetinput = document.querySelector('body')
+        const getCheck  = document.querySelector('.container')
+        const boxText = document.querySelector('.box-text')
+        bodygetinput.onkeyup = (e)=>{
+            if(e.keyCode.length != 0){
+                getCheck.style.display = 'flex'
+                boxText.style.display='none'
+                showInfo(e)
+            }
+        }
+
+        function showInfo(code){
+            const top =document.querySelector('.top-showResult')
+            const keyAll = document.querySelectorAll('.key-result')
+            keyAll[0].innerText = code.key;
+            keyAll[1].innerText  = code.location;
+            keyAll[2].innerText = code.which;
+            keyAll[3].innerText = code.code;
+            top.innerText = code.which;
+        }
+
+    </script>
+</body>
+</html>
