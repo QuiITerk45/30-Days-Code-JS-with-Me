@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="box">
+        <h2>Search Tags</h2>
+        <div class="container">
+            <div class="item-source">
+                <ul id="course">
+                    <li>
+                        <div class="item-course">
+                            <p>nodejs</p>
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-course">
+                            <p>vuejs</p>
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <input type="text" placeholder="Type and enter" id="inputCourse">
+        </div>
+       
+        <br>
+        <button id="removeAll">Remove All</button>
+    </div>
+    <script>
+        const $ = document.querySelector.bind(document)
+        const $$ = document.querySelectorAll.bind(document)
+
+        const allLi = $$('li')
+        const itemSource = $('.item-source')
+        const inputCourse = $('#inputCourse')
+        const itemCourse = $$('.item-course')
+        const iconRemove = $$('.fas')
+        const container = $('.container')
+
+
+        inputCourse.focus()
+
+
+        //Xu li khi nhan icon xoa tung khoa hoc
+        setInterval(()=>{
+            document.querySelectorAll('.fa-times').forEach((item,index)=>{
+                item.onclick =()=>{
+                    item.parentNode.parentNode.innerHTML = ''
+                }
+        })
+        },100)
+       
+
+
+        //Xu li khi them khoa hoc moi
+        inputCourse.onkeypress = (e)=>{
+            if(e.key === 'Enter'){
+                if(inputCourse.value.length !== 0){
+
+                    let ul = $('#course')
+                    let li = document.createElement('li')
+                    li.innerHTML =  `<div class="item-course">
+                                <p>${inputCourse.value}</p>
+                                <i class="fas fa-times"></i>
+                            </div>`
+                        
+                    ul.append(li)
+                    inputCourse.value = ''    
+                }
+            }
+        }
+
+
+        //Xu li moi khi co bien dong so luong mang
+        setInterval(()=>{
+            if($$('.item-course').length == 0)
+                removeAllItem()
+            else if($$('.item-course').length == 1){
+                container.style.flexDirection = 'row'
+                removeAllItem()
+            }
+            else if($$('.item-course').length >= 2){
+                container.style.flexDirection = 'column'
+            }
+        },100)
+
+        //Xu li khi nhan remove all
+        $('#removeAll').onclick = ()=>{
+            $$('li').forEach((item,index)=>{
+                item.innerHTML = ''
+            })
+         removeAllItem()
+        }
+
+
+        //Xu li khi da xoa het cac thu
+        function removeAllItem(){
+            itemSource.style.marginBottom = 0
+            inputCourse.focus()
+        }
+    
+    </script>
+</body>
+</html>
