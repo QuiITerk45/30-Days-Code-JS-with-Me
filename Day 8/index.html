@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form action="./xuli.html" method="get" onsubmit="return checkForm(this)">
+            <div class="formItem">
+                <input type="text" placeholder="Username"  name="name" >
+                    <div class="messEmpty"  data-index="Username">
+                      
+                    </div>
+            </div>
+            <div class="formItem">
+                <input type="email" placeholder="Email" name="email">
+                <div class="messEmpty"  data-index="Email">
+                   
+                </div>
+            </div>
+            <div class="formItem">
+                <input type="password" placeholder="Password" name="pass">
+                <div class="messEmpty "  data-index="Password">
+                  
+                </div>
+            </div>
+            <div class="formItem">
+                <input type="password" placeholder="Confirm password" name="pass2" >
+                <div class="messEmpty "  data-index="Password2">
+                    
+                </div>
+            </div>
+            <input type="submit" value="Login" id="btn-login">
+        </form>
+
+        <div class="reminder">Not a member? 
+            <a href="/signup.html">Sigup</a>
+        </div>
+    </div>
+    <script>
+        const getMess = document.querySelectorAll('.messEmpty')
+
+       /*Ham tong quat submit*/
+       function checkForm(frm){
+            let getUserName = frm.name.value;
+            let getEmail = frm.email.value;
+            let getUserPassword = frm.pass.value;
+            let getUserPassword2 = frm.pass2.value;
+            const re =/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+            /*Kiem tra tat ca cac fields có rỗng hết không ?*/
+            let isEmptyAllField = checkisemptyAllField(getUserName,getEmail,getUserPassword,getUserPassword2);
+           
+            if(isEmptyAllField === true){
+                showErrorMess();
+                return false;
+            }
+
+            /*Kiểm tra username*/
+            if(getUserName.length < 3){
+                getMess[0].innerText = `Username must be at least 3 characters`
+                getMess[0].classList.add('empty')
+                return false;
+            }
+
+            /*Kiểm tra email*/
+            if(re.test(getEmail) === false){
+                getMess[1].innerText = `Email is not valid`
+                getMess[1].classList.add('empty')
+                return false;
+            }
+
+            /*Kiểm tra password*/
+            if(getUserPassword < 6){
+                getMess[2].innerText = `Password must be at least 6 characters`
+                getMess[2].classList.add('empty')
+                return false;
+            }
+
+
+              /*Kiểm tra password2*/
+              if(getUserPassword != getUserPassword2){
+                getMess[3].innerText = `Password is not similar`
+                getMess[3].classList.add('empty')
+                return false;
+            }
+
+           showSuccessMess()
+            return true;
+       }
+
+       /*Hàm kiểm tra xem tất cả các field có trống hay không ?*/
+       function checkisemptyAllField(a,b,c,d){
+            if(a.length === 0 || b.length === 0 || c.length ===0 || d.length ===0){
+                return true;
+            }
+       }
+
+       /*Hàm hiển thị thông báo thành công*/
+       function showSuccessMess(){
+        document.querySelectorAll('.messEmpty').forEach((item, index)=>{
+                item.className = 'success'
+                item.innerHTML = ' '
+            })
+       }
+
+       /*Hàm hiển thị thông báo thất bại*/
+       function showErrorMess(){
+        document.querySelectorAll('.messEmpty').forEach((item, index)=>{
+            console.log(document.querySelectorAll('input')[index].value.length)
+                if(document.querySelectorAll('input')[index].value.length === 0){
+                    item.innerHTML = `${item.dataset.index} is required`
+                    item.classList.add('empty')
+                }
+                else    
+                    showSuccessMess()
+            })
+       }
+
+    </script>
+</body>
+</html>
