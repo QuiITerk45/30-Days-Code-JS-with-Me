@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto",Arial, Helvetica, sans-serif;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    background-image: url('./img/hot.png');
+    background-image: linear-gradient(to bottom , rgba(0,0,0,0.9), rgba(0,0,0,0.1));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.weather-container{
+    border:3px solid #ccc;
+    min-width: 400px;
+    background-color: #fff;
+    min-height: 50px;
+    border-radius: 10px;
+    background-image: url('./img/hot.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding:30px 20px;
+    text-align: center;
+}
+
+.top-search{
+    width: 100%;
+    height: 30px;
+}
+
+.top-search input{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border:none;
+    outline: none;
+    padding: 20px;
+    color: black;
+    font-size: 19px;
+    opacity: 0.9;
+    border-radius: 0 13px 0 13px;
+}
+
+.top-search input:focus{
+    transition: all 0.52s linear;
+    border-radius: 13px 0px 13px 0px;
+    opacity: 0.7;
+}
+
+#comma{
+    font-size: 35px;
+    color: #fff;
+    text-shadow: 1px 2px 0.5px black;
+}
+
+.city-name{
+    font-size: 35px;
+    color: #fff;
+    text-shadow: 1px 2px 0.5px black;
+    display: inline-block;
+}
+
+#country{
+    font-size: 35px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 2px 0.5px black;
+}
+
+.time-date{
+    color:#fff;
+    margin-top: 15px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+
+.body-weather{
+    margin-bottom: 30px;
+}
+
+.show-temp{
+    width: 250px;
+    height: 120px;
+    font-size: 60px;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(224, 202, 202, 0.6);
+    border-radius: 10px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    text-shadow: 3px 3px 0.5px black;
+    box-shadow: 3px 3px 10px 2px black;
+}
+
+.status-weather{
+    font-size: 50px;
+    color: #fff;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.bottom-weather{
+    margin-top: 50px;
+    display: flex;
+    color: #fff;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.bottom-weather div{
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-weather div i{
+    margin-bottom: 15px;
+}
