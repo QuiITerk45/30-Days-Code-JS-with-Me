@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast Notification</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="success" >Show Success</div>
+        <div class="warning" >Show Warning</div>
+        <div class="error">Show Error</div>
+    </div>
+
+    <div class="right-box">
+    
+    </div>
+
+    <script>
+
+        /*Ham click vao DOM NODE*/
+        let chooseNode = document.querySelectorAll('.container > div')
+        chooseNode.forEach((item)=>{
+            item.onclick = ()=>{
+                createNode(item.getAttribute('class'))
+            }
+        })
+
+        /*Doi tuong Text*/
+        let TextALL = {
+            'success':{
+                'text':'This is a success message !',
+                'icon': 'fa-solid fa-circle-check',
+                'color':'--color-success-background'
+            },
+            'warning':{
+                'text':'This is a warning message !',
+                'icon':'fa-solid fa-triangle-exclamation',
+                'color':'--color-warning-background'
+            },
+            'error':{
+                'text':'This is a error message !',
+                'icon':'fa-solid fa-circle-exclamation',
+                'color':'--color-error-background'
+            }
+        }
+
+        let rightContent = document.querySelector('.right-box')
+        /*Ham tao css dom node*/
+        function createNode(state){
+            let divAll = document.createElement('div')
+            divAll.innerHTML = `
+                    <div class="item show" style="background-color: var(${TextALL[state].color}); border-left: 7px solid var(${TextALL[state].color});">
+                        <i class="${TextALL[state].icon}"></i>
+                        <span id="mess-input">${TextALL[state].text}</span>
+                    </div>
+            `
+
+            rightContent.appendChild(divAll)
+            setTimeout(()=>{
+                document.querySelector('.item').style.opacity='0.5'
+                document.querySelector('.item').remove()
+            },4000)
+
+        }
+     
+        
+    </script>
+</body>
+</html>
