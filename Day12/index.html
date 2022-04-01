@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Custom Range Slider</h2>
+        <div class="range-bar">
+            <div class="color-bar">
+                <span id="percent-range"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        let getHeading = document.querySelector('h2')
+        let getBarItem = document.querySelector('.color-bar')
+        let getBody = document.querySelector('body')
+        let getTextPercent = document.querySelector('#percent-range')
+        let getRangeBar = document.querySelector('.range-bar')
+
+       
+        var sizeBody = document.querySelector('body').clientWidth;
+            var sizeRangeBar = getRangeBar.clientWidth; 
+            var marginleft = (sizeBody - sizeRangeBar) / 2
+
+        function calculatorPercent(sizeE){
+            return sizeE - marginleft;
+        }
+
+        getRangeBar.addEventListener('mousemove',(e)=>{
+            let sizeRangeItem = calculatorPercent(e.pageX)
+ 
+        let numberPercent = Math.floor((Math.ceil(sizeRangeItem) / 412) * 100)
+        getTextPercent.innerText = `${numberPercent} %`
+           getBarItem.style.width = sizeRangeItem + 'px'
+
+           getBody.style.backgroundColor = `rgba(0,0,0,${numberPercent/100})`
+
+           getHeading.style.color = `rgba(255,255,255,${numberPercent/100})`
+        })
+</script>
+</body>
+</html>
